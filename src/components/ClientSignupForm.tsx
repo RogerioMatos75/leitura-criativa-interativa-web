@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useAuth } from '../context/AuthContext'; // Importe o hook useAuth
 
 const formSchema = z.object({
@@ -42,31 +42,47 @@ export default function ClientSignupForm() {
         values.email,
         values.password
       );
-      // Usuário criado com sucesso
-      const user = userCredential.user;
-      console.log('Usuário criado:', user);
-      alert("Cadastro bem-sucedido!");
-      // TODO: Redirecionar para o dashboard
-      // router.push('/dashboard');
-    } catch (error: any) {
-      // Tratar erros
-      console.error('Erro no cadastro:', error.message);
-      alert(`Erro no cadastro: ${error.message}`);
+      console.log("Usuário criado com sucesso:", userCredential.user);
+      alert("Cadastro realizado com sucesso! Faça login para continuar.");
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Erro ao criar usuário:", error);
+        alert("Erro ao realizar cadastro: " + error.message);
+      } else {
+        console.error("Erro desconhecido:", error);
+        alert("Ocorreu um erro desconhecido durante o cadastro.");
+      }
+    }
+  }
+
+  async function handleGoogleSignup() {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      console.log("Usuário autenticado com Google:", result.user);
+      alert("Autenticação com Google realizada com sucesso!");
+    } catch (error) {
+      console.error("Erro ao autenticar com Google:", error);
+      if (error instanceof Error) {
+        alert("Erro ao realizar autenticação com Google: " + error.message);
+      } else {
+        alert("Erro ao realizar autenticação com Google");
+      }
     }
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <CardContent className="space-y-5">
+        <CardContent className="space-y-6">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nome Completo</FormLabel>
+                <FormLabel>Nome</FormLabel>
                 <FormControl>
-                  <Input placeholder="Seu nome" {...field} />
+                  <Input type="text" placeholder="Seu nome" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,7 +119,7 @@ export default function ClientSignupForm() {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Confirme a Senha</FormLabel>
+                <FormLabel>Confirme sua Senha</FormLabel>
                 <FormControl>
                   <Input type="password" placeholder="••••••••" {...field} />
                 </FormControl>
@@ -114,7 +130,10 @@ export default function ClientSignupForm() {
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
           <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-            Criar Conta
+            Cadastrar
+          </Button>
+          <Button onClick={handleGoogleSignup} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+            Cadastrar com Google
           </Button>
         </CardFooter>
       </form>

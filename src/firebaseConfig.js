@@ -1,19 +1,19 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics"; // analytics é opcional para o funcionamento básico
-import { getAuth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDq7u3rTG_783L_6LcVadqcqoy9HCSLQO8",
-  authDomain: "leitura-criativa-interativa.firebaseapp.com",
-  projectId: "leitura-criativa-interativa",
-  storageBucket: "leitura-criativa-interativa.firebasestorage.app",
-  messagingSenderId: "924872658228",
-  appId: "1:924872658228:web:c3bbcfa298fc8958c1e961",
-  measurementId: "G-HBKTVDQ3WZ"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -24,4 +24,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { auth, db, storage };
+// Inicialize o provedor Google
+const googleProvider = new GoogleAuthProvider();
+
+export { auth, db, storage, googleProvider };

@@ -31,9 +31,9 @@ export default function AppSidebar() {
       <SidebarHeader className="justify-between">
         <Link href="/dashboard" className="text-lg font-headline font-semibold text-sidebar-primary flex items-center gap-2 group-data-[collapsible=icon]:hidden">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-sidebar-primary">
-            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           LCI
         </Link>
@@ -43,7 +43,7 @@ export default function AppSidebar() {
         <SidebarMenu>
           {navItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-              <Link href={item.href} legacyBehavior passHref>
+              <Link href={item.href} passHref>
                 <SidebarMenuButton
                   className={cn(
                     pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href))
@@ -65,18 +65,18 @@ export default function AppSidebar() {
       <SidebarFooter className="mt-auto">
         <SidebarMenu>
           <SidebarMenuItem>
-             <Link href="/dashboard/settings" legacyBehavior passHref>
-                <SidebarMenuButton 
-                  className="justify-start w-full hover:bg-sidebar-accent/50"
-                  tooltip={{ children: "Configurações", className: "bg-primary text-primary-foreground" }}
-                >
-                  <Settings className="h-5 w-5" />
-                  <span>Configurações</span>
-                </SidebarMenuButton>
-              </Link>
+            <Link href="/dashboard/settings" passHref>
+              <SidebarMenuButton
+                className="justify-start w-full hover:bg-sidebar-accent/50"
+                tooltip={{ children: "Configurações", className: "bg-primary text-primary-foreground" }}
+              >
+                <Settings className="h-5 w-5" />
+                <span>Configurações</span>
+              </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
-           <SidebarMenuItem>
-            <Link href="/" legacyBehavior passHref>
+          <SidebarMenuItem>
+            <Link href="/" passHref>
               <SidebarMenuButton className="justify-start w-full text-destructive-foreground bg-destructive/80 hover:bg-destructive">
                 <LogOut className="h-5 w-5" />
                 <span>Sair</span>

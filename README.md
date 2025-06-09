@@ -38,7 +38,71 @@ Devemos usar exclusivamente o seguinte conjunto de ferramentas. Todos os exemplo
 - **Motivacional:** Mantenha um tom encorajador durante todo o processo.
 
 ---
+### Estrutura de Pastas do Projeto (Next.js com App Router)
+
+```
+leitura-criativa-interativa-web/
+├── public/                     # Arquivos estáticos públicos (imagens, fontes globais)
+├── src/
+│   ├── app/                    # Rotas da aplicação (Next.js App Router)
+│   │   ├── (auth)/             # Grupo de rotas para autenticação
+│   │   │   ├── login/
+│   │   │   │   └── page.tsx
+│   │   │   └── signup/
+│   │   │       └── page.tsx
+│   │   ├── (app)/              # Grupo de rotas para a aplicação principal (após login)
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx        # Dashboard ou home da aplicação
+│   │   │   ├── historias/
+│   │   │   │   ├── [storyId]/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx
+│   │   ├── layout.tsx          # Layout raiz
+│   │   └── page.tsx            # Landing page / Home pública
+│   ├── assets/                 # Imagens, áudios para componentes
+│   ├── components/             # Componentes React
+│   │   ├── ui/                 # Componentes de UI (shadcn/ui)
+│   │   ├── common/             # Componentes genéricos
+│   │   ├── layout/             # Componentes de estrutura (Header, Footer)
+│   │   ├── auth/               # Componentes de autenticação
+│   │   └── features/           # Componentes de funcionalidades (StoryReader, Quiz)
+│   ├── context/                # React Context APIs (ex: AuthContext)
+│   ├── hooks/                  # Custom Hooks
+│   ├── lib/                    # Funções utilitárias, config. Firebase (firebase.ts)
+│   ├── services/               # Lógica de comunicação com APIs/Firestore
+│   ├── styles/                 # Estilos globais (globals.css)
+│   └── types/                  # Definições TypeScript
+├── .env.local
+├── .gitignore
+├── next.config.mjs
+├── package.json
+├── postcss.config.js
+├── tailwind.config.ts
+├── tsconfig.json
+└── Readme.md
+```
+---
 
 **Minha primeira solicitação:**
 
 "Ok, assistente. Prompt de sistema recebido e entendido. Para começar, me ajude a criar a estrutura de pastas inicial para este projeto em React e a configurar a conexão com o Firebase. Qual é o primeiro comando que devo rodar no meu terminal e como devemos organizar as pastas `components`, `pages` e `assets`?"
+
+### Como Rodar o Projeto Localmente
+
+1. **Instale as dependências**:
+   Certifique-se de que todas as dependências do projeto estão instaladas. No terminal, execute:
+   ```bash
+   npm install
+   ```
+
+2. **Inicie o servidor de desenvolvimento**:
+   Após instalar as dependências, inicie o servidor de desenvolvimento com o comando:
+   ```bash
+   npm run dev
+   ```
+
+3. **Acesse o projeto no navegador**:
+   O servidor de desenvolvimento geralmente estará disponível em [http://localhost:3000](http://localhost:3000). Abra este link no navegador para visualizar o projeto.
+
+4. **Resolvendo Problemas**:
+   Caso encontre erros, verifique se todas as dependências estão instaladas corretamente e se o arquivo `.env.local` está configurado com as credenciais do Firebase.

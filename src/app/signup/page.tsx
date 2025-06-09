@@ -6,8 +6,20 @@ import { Form, FormField, FormItem, FormLabel, FormMessage, FormControl } from "
 import { UserPlus } from "lucide-react";
 import Link from "next/link";
 import ClientSignupForm from '@/components/ClientSignupForm'; // Importe o novo componente
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
+
 export default function SignupPage() {
- return (
+  const { currentUser } = useAuth();
+  const router = useRouter();
+
+  // Verifica se o usuário já está autenticado
+  if (currentUser) {
+    router.push('/dashboard'); // Redireciona para o dashboard se autenticado
+    return null;
+  }
+
+  return (
     <div className="flex items-center justify-center min-h-[calc(100vh-150px)] bg-gradient-to-br from-primary/10 via-background to-accent/10 p-4">
       <Card className="w-full max-w-md shadow-2xl">
         <CardHeader className="text-center">
@@ -18,13 +30,13 @@ export default function SignupPage() {
         {/* Use o componente ClientSignupForm aqui */}
         <ClientSignupForm />
         <CardFooter className="flex flex-col gap-4">
- <p className="text-sm text-center text-muted-foreground">
- Já tem uma conta?{" "}
- <Link href="/login" className="font-medium text-primary hover:underline">
- Faça login
- </Link>
- </p>
- </CardFooter>
+          <p className="text-sm text-center text-muted-foreground">
+            Já tem uma conta?{" "}
+            <Link href="/login" className="font-medium text-primary hover:underline">
+              Faça login
+            </Link>
+          </p>
+        </CardFooter>
       </Card>
     </div>
   );

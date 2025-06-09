@@ -18,11 +18,11 @@ export default function Home() {
 
       <div className="mb-16">
         <Image
-          src="https://placehold.co/800x400.png"
-          alt="Crianças lendo e se divertindo"
-          data-ai-hint="children reading books"
+          src="/asset/Gemini_Generated_Bunner800x400.png"
+          alt="Banner do Leitura Criativa Interativa"
           width={800}
           height={400}
+          priority
           className="rounded-lg shadow-xl mx-auto"
         />
       </div>
@@ -42,9 +42,9 @@ export default function Home() {
             <p>Nossos exercícios são adaptados para diferentes níveis, ajudando a superar dificuldades de aprendizado com apoio e diversão.</p>
           </CardContent>
           <CardFooter>
-             <Link href="/dashboard/exercises" className="w-full">
-              <Button variant="outline" className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                Explorar Exercícios
+            <Link href="/signup" className="w-full">
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                Comece Agora!
               </Button>
             </Link>
           </CardFooter>
@@ -63,10 +63,10 @@ export default function Home() {
           <CardContent>
             <p>Com base nos interesses e nível de leitura, nossa IA encontra as próximas aventuras literárias ideais.</p>
           </CardContent>
-           <CardFooter>
-            <Link href="/dashboard/recommendations" className="w-full">
-              <Button variant="outline" className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                Ver Recomendações
+          <CardFooter>
+            <Link href="/signup" className="w-full">
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                Comece Agora!
               </Button>
             </Link>
           </CardFooter>
@@ -85,12 +85,12 @@ export default function Home() {
           <CardContent>
             <p>Aprender a ler nunca foi tão divertido! Com nosso sistema de gamificação, cada conquista é celebrada.</p>
           </CardContent>
-           <CardFooter>
-             <Link href="/signup" className="w-full">
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                  Comece Agora!
-                </Button>
-              </Link>
+          <CardFooter>
+            <Link href="/signup" className="w-full">
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                Comece Agora!
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>
