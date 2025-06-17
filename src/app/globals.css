@@ -81,4 +81,31 @@
     @apply bg-background text-foreground;
     /* font-family is set via tailwind config and layout.tsx body className */
   }
+
+  /* Estilos para a barra de rolagem */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 6px;
+    border: 3px solid var(--background);
+  }
+}
+
+@layer utilities {
+  .border-border {
+    border-color: var(--sidebar-border);
+  }
+  .bg-background {
+    background-color: var(--sidebar-accent-foreground);
+  }
+  .text-foreground {
+    color: var(--sidebar-accent-foreground);
+  }
 }

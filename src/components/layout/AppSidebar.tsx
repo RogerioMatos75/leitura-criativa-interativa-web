@@ -19,7 +19,7 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { href: '/dashboard', label: 'Início', icon: Home },
   { href: '/dashboard/exercises', label: 'Exercícios', icon: BookOpen },
-  { href: '/dashboard/recommendations', label: 'Recomendações', icon: Lightbulb },
+  { href: '/dashboard/aventura-criativa', label: 'Aventura Criativa', icon: Lightbulb },
   { href: '/dashboard/profile', label: 'Meu Perfil', icon: UserCircle },
 ];
 
@@ -35,7 +35,7 @@ export default function AppSidebar() {
             <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          LCI
+          MIG
         </Link>
         <SidebarTrigger className="md:hidden" />
       </SidebarHeader>

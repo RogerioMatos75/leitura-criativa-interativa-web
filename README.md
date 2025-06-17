@@ -1,108 +1,130 @@
-### Persona e Objetivo Principal
+# Leitura Criativa Interativa
 
-Você é um assistente de desenvolvimento de software especialista, agindo como um mentor paciente e um programador sênior. Seu objetivo é me guiar, passo a passo, na criação de um aplicativo web completo chamado "Leitura Criativa Interativa". Você deve simplificar conceitos complexos, fornecer exemplos de código claros e práticos, e me ajudar a tomar as melhores decisões de arquitetura para este projeto específico.
+## Descrição
 
-### Contexto do Projeto
+O Leitura Criativa Interativa é uma plataforma web inovadora projetada para incentivar o amor pela leitura em crianças de 5 a 8 anos. Através de histórias interativas, quizzes envolventes e atividades lúdicas, buscamos tornar o aprendizado uma aventura emocionante. Acreditamos que, ao combinar tecnologia e conteúdo educativo de alta qualidade, podemos despertar a imaginação das crianças e desenvolver habilidades essenciais de leitura e interpretação.
 
-**1. Nome do Projeto:** Leitura Criativa Interativa
+## Estrutura de Pastas do Projeto (Next.js com App Router)
 
-**2. Missão:** Criar uma plataforma de alfabetização lúdica e acessível para ajudar crianças de 5 a 8 anos, especialmente aquelas com dificuldades de aprendizado, a desenvolver suas habilidades de leitura e interpretação.
-
-**3. Funcionalidades Principais:**
-   - Exibição de histórias curtas com imagens (ex: "A Zebra Zizi").
-   - Narração em áudio de cada história, com destaque da palavra que está sendo lida.
-   - Um quiz simples de múltipla escolha após cada história para testar a interpretação.
-   - Uma atividade de colorir digital baseada na ilustração da história.
-   - (Fase 2) Um personagem interativo (usando IA) com quem a criança pode conversar.
-
-**4. Público-Alvo:** Crianças em fase de alfabetização (5-8 anos) e seus pais/educadores. Acessibilidade é uma prioridade máxima.
-
-### Stack Tecnológico Definido
-
-Devemos usar exclusivamente o seguinte conjunto de ferramentas. Todos os exemplos de código e instruções devem ser baseados neste stack:
-
-- **Front-End:** **React.js** (usando a ferramenta `create-react-app` ou `Vite` para a configuração inicial).
-- **Estilização:** CSS Modules ou Styled-Components para estilização dos componentes.
-- **Back-End e Banco de Dados:** **Firebase** (do Google). Usaremos:
-    - **Firestore:** Para armazenar as coleções de 'historias', 'perguntas' e 'usuarios'.
-    - **Firebase Authentication:** Para o login de pais ou educadores.
-    - **Firebase Storage:** Para guardar as imagens e os arquivos de áudio das narrações.
-- **Hospedagem:** **Vercel**, com integração contínua a partir de um repositório no GitHub.
-
-### Regras de Interação
-
-- **Passo a Passo:** Divida cada grande tarefa em passos menores e gerenciáveis.
-- **Código Prático:** Forneça blocos de código completos e funcionais para cada etapa.
-- **Foco em Acessibilidade:** Lembre-me constantemente de implementar práticas de acessibilidade (ex: uso de tags `alt` para imagens, contraste de cores, navegação por teclado).
-- **Seja Proativo:** Antecipe possíveis problemas e sugira as melhores práticas.
-- **Motivacional:** Mantenha um tom encorajador durante todo o processo.
-
----
-### Estrutura de Pastas do Projeto (Next.js com App Router)
-
-```
+```bash
 leitura-criativa-interativa-web/
-├── public/                     # Arquivos estáticos públicos (imagens, fontes globais)
+├── docs/
+├── public/
+│   ├── asset/
+├── node_modules/
 ├── src/
-│   ├── app/                    # Rotas da aplicação (Next.js App Router)
-│   │   ├── (auth)/             # Grupo de rotas para autenticação
-│   │   │   ├── login/
-│   │   │   │   └── page.tsx
-│   │   │   └── signup/
-│   │   │       └── page.tsx
-│   │   ├── (app)/              # Grupo de rotas para a aplicação principal (após login)
-│   │   │   ├── layout.tsx
-│   │   │   ├── page.tsx        # Dashboard ou home da aplicação
-│   │   │   ├── historias/
-│   │   │   │   ├── [storyId]/
-│   │   │   │   │   └── page.tsx
-│   │   │   │   └── page.tsx
-│   │   ├── layout.tsx          # Layout raiz
-│   │   └── page.tsx            # Landing page / Home pública
-│   ├── assets/                 # Imagens, áudios para componentes
-│   ├── components/             # Componentes React
-│   │   ├── ui/                 # Componentes de UI (shadcn/ui)
-│   │   ├── common/             # Componentes genéricos
-│   │   ├── layout/             # Componentes de estrutura (Header, Footer)
-│   │   ├── auth/               # Componentes de autenticação
-│   │   └── features/           # Componentes de funcionalidades (StoryReader, Quiz)
-│   ├── context/                # React Context APIs (ex: AuthContext)
-│   ├── hooks/                  # Custom Hooks
-│   ├── lib/                    # Funções utilitárias, config. Firebase (firebase.ts)
-│   ├── services/               # Lógica de comunicação com APIs/Firestore
-│   ├── styles/                 # Estilos globais (globals.css)
-│   └── types/                  # Definições TypeScript
-├── .env.local
+│    ├── __tests__
+│    │       ├── useAuth.test.ts
+│    │       ├── dashboard.test.ts
+│    │       ├── login.test.ts
+│    │       ├── sign-in.test.ts
+│    │       └── sign-up.test.ts
+│    ├── ai/
+│    │   └── flows/
+│    ├── app/
+│    │   ├── dashboard/
+│    │   │   └── exercises/
+│    │   │       └── [id]/
+│    │   │   └── aventura-criativa
+│    │   │   └── profile/
+│    │   │   └── settings/
+│    │   ├── login/
+│    │   ├── sign-in/
+│    │   │   └── [[...sign-in]]/
+│    │   ├── sign-up/
+│    │   │   └── [[...sign-up]]/
+│    ├── components/
+│    │   ├── exercises/
+│    │   ├── feature\aventura-criativa/
+│    │   ├── layout/
+│    │   ├── profile/
+│    │   └── ui/
+│    ├── context/
+│    ├── hooks/
+│    ├── lib/
+│    └── types/
+├── apphosting.yaml
+├── builder.config.json
 ├── .gitignore
-├── next.config.mjs
+├── components.json
+├── next.config.ts
+├── next-env.d.ts
+├── package-lock.json
 ├── package.json
-├── postcss.config.js
-├── tailwind.config.ts
+├── postcss.config.mjs
+├── README.md
 ├── tsconfig.json
-└── Readme.md
+├── tailwind.config.js
+└── tailwind.config.ts
 ```
+
+## Funcionalidades Principais
+
+*   **Histórias Interativas com Narração e Destaque de Palavras:** As crianças podem acompanhar histórias narradas por profissionais, com palavras destacadas em tempo real para facilitar a associação entre som e grafia.
+*   **Quizzes de Interpretação:** Ao final de cada história, quizzes divertidos testam a compreensão da criança sobre o que foi lido, reforçando o aprendizado.
+*   **Atividades de Colorir Digitais:** Personagens e cenas das histórias ganham vida em atividades de colorir digitais, estimulando a criatividade e a coordenação motora.
+*   **Recomendações de Leitura Personalizadas por IA:** Utilizando inteligência artificial, a plataforma sugere novas histórias com base nos interesses e no nível de leitura de cada criança.
+*   **Sistema de Gamificação com Recompensas:** Conquistas, medalhas e pontos incentivam a participação contínua e o progresso na plataforma, tornando o aprendizado mais divertido.
+
+## Público-Alvo
+
+*   **Crianças de 5 a 8 anos:** O conteúdo e as funcionalidades são especialmente desenvolvidos para atender às necessidades e interesses desta faixa etária.
+*   **Pais:** Oferece uma ferramenta segura e educativa para complementar o aprendizado dos filhos em casa.
+*   **Educadores:** Pode ser utilizado como um recurso didático interativo em salas de aula, auxiliando no desenvolvimento de habilidades de leitura e interpretação dos alunos.
+
+## Tecnologias Utilizadas
+
+*   **Next.js:** Framework React para desenvolvimento de interfaces de usuário performáticas e otimizadas para SEO.
+*   **Clerk:** Plataforma para desenvolvimento de aplicativos web e móveis, utilizada para autenticação.
+*   **Genkit (Google AI):** Ferramenta para integração de modelos de inteligência artificial generativa, utilizada para as recomendações personalizadas de leitura.
+*   **Tailwind CSS:** Framework CSS utility-first para a criação rápida e customizável de interfaces.
+*   **shadcn/ui:** Coleção de componentes de UI reutilizáveis e acessíveis, construídos sobre o Tailwind CSS.
+
+## Como Executar o Projeto Localmente
+
+Para executar o projeto em seu ambiente de desenvolvimento local, siga os passos abaixo:
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone <URL_DO_REPOSITORIO_AQUI>
+    cd leitura-criativa-interativa
+    ```
+
+2.  **Instale as dependências:**
+    Certifique-se de ter o Node.js e o npm (ou yarn) instalados em sua máquina.
+    ```bash
+    npm install
+    # ou
+    # yarn install
+    ```
+
+3.  **Configure as variáveis de ambiente:**
+    Crie um arquivo `.env.local` na raiz do projeto e adicione as chaves de API do Google Gemini Flash e outras configurações necessárias. Consulte o arquivo `.env.example` (se existir) para referência.
+
+4.  **Execute o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    # ou
+    # yarn dev
+    ```
+    
+    Isso iniciará o servidor de desenvolvimento na porta 9004 por padrão. Você pode alterar a porta editando o script no `package.json` ou passando a variável de ambiente `PORT`.  
+
+5.  **Abra o navegador:**
+  
+  Após o servidor iniciar, O servidor de desenvolvimento geralmente estará disponível em [http://localhost:9004](http://192.168.0.252:9004). Abra este link no navegador para visualizar o projeto.
+
+**Resolvendo Problemas**: Caso encontre erros, verifique se todas as dependências estão instaladas corretamente e se o arquivo `.env.local` está configurado com as credenciais do Clerk.
+
+## Como Contribuir
+
+Agradecemos o seu interesse em contribuir para o Leitura Criativa Interativa! No momento, estamos estruturando nosso processo de contribuição. Em breve, adicionaremos mais informações sobre como você pode nos ajudar a tornar esta plataforma ainda melhor.
+
+Se você tiver sugestões, encontrar bugs ou quiser discutir ideias, sinta-se à vontade para abrir uma "Issue" no repositório do GitHub.
+
 ---
 
-**Minha primeira solicitação:**
+Feito com ❤️ para inspirar pequenos leitores!
 
-"Ok, assistente. Prompt de sistema recebido e entendido. Para começar, me ajude a criar a estrutura de pastas inicial para este projeto em React e a configurar a conexão com o Firebase. Qual é o primeiro comando que devo rodar no meu terminal e como devemos organizar as pastas `components`, `pages` e `assets`?"
-
-### Como Rodar o Projeto Localmente
-
-1. **Instale as dependências**:
-   Certifique-se de que todas as dependências do projeto estão instaladas. No terminal, execute:
-   ```bash
-   npm install
-   ```
-
-2. **Inicie o servidor de desenvolvimento**:
-   Após instalar as dependências, inicie o servidor de desenvolvimento com o comando:
-   ```bash
-   npm run dev
-   ```
-
-3. **Acesse o projeto no navegador**:
-   O servidor de desenvolvimento geralmente estará disponível em [http://localhost:3000](http://localhost:3000). Abra este link no navegador para visualizar o projeto.
-
-4. **Resolvendo Problemas**:
-   Caso encontre erros, verifique se todas as dependências estão instaladas corretamente e se o arquivo `.env.local` está configurado com as credenciais do Firebase.
+## Licença
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.

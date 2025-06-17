@@ -1,10 +1,25 @@
+// page.tsx
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, Sparkles, Star } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+// import { useUser } from '@clerk/nextjs'; // Desabilitado temporariamente
+
+const currentYear = new Date().getFullYear();
 
 export default function Home() {
+  // const { isSignedIn } = useUser(); // Desabilitado temporariamente
+  const router = useRouter();
+
+  const handleStartNow = () => {
+    // Acesso livre ao dashboard
+    router.push('/dashboard');
+  };
+
   return (
     <div className="container mx-auto px-4 py-12 text-center">
       <header className="mb-12">
@@ -18,7 +33,7 @@ export default function Home() {
 
       <div className="mb-16">
         <Image
-          src="/asset/Gemini_Generated_Bunner800x400.png"
+          src="/asset/Gemini_Generated_Bunner800x400.png" // Certifique-se que este caminho está correto em `public/asset/`
           alt="Banner do Leitura Criativa Interativa"
           width={800}
           height={400}
@@ -42,11 +57,9 @@ export default function Home() {
             <p>Nossos exercícios são adaptados para diferentes níveis, ajudando a superar dificuldades de aprendizado com apoio e diversão.</p>
           </CardContent>
           <CardFooter>
-            <Link href="/signup" className="w-full">
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                Comece Agora!
-              </Button>
-            </Link>
+            <Button onClick={handleStartNow} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+              Acessar Plataforma
+            </Button>
           </CardFooter>
         </Card>
 
@@ -64,11 +77,9 @@ export default function Home() {
             <p>Com base nos interesses e nível de leitura, nossa IA encontra as próximas aventuras literárias ideais.</p>
           </CardContent>
           <CardFooter>
-            <Link href="/signup" className="w-full">
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                Comece Agora!
-              </Button>
-            </Link>
+            <Button onClick={handleStartNow} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+              Acessar Plataforma
+            </Button>
           </CardFooter>
         </Card>
 
@@ -86,17 +97,15 @@ export default function Home() {
             <p>Aprender a ler nunca foi tão divertido! Com nosso sistema de gamificação, cada conquista é celebrada.</p>
           </CardContent>
           <CardFooter>
-            <Link href="/signup" className="w-full">
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                Comece Agora!
-              </Button>
-            </Link>
+            <Button onClick={handleStartNow} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+              Acessar Plataforma
+            </Button>
           </CardFooter>
         </Card>
       </div>
 
       <footer className="mt-16 pt-8 border-t border-border">
-        <p className="text-foreground/70">&copy; {new Date().getFullYear()} Leitura Criativa Interativa. Todos os direitos reservados.</p>
+        <p className="text-foreground/70">&copy; {currentYear} Leitura Criativa Interativa. Todos os direitos reservados.</p>
       </footer>
     </div>
   );

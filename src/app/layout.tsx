@@ -1,7 +1,8 @@
-import type {Metadata} from 'next';
+// layout.tsx
+import type { Metadata } from 'next';
 import './globals.css';
+// import { ClerkProvider } from '@clerk/nextjs'; // Desabilitado temporariamente
 import { Toaster } from "@/components/ui/toaster";
-import { AuthProvider } from '../context/AuthContext';
 
 export const metadata: Metadata = {
   title: 'Leitura Criativa Interativa',
@@ -14,7 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // <ClerkProvider>
+    <html lang="pt">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -22,12 +24,10 @@ export default function RootLayout({
         {/* Headers will be added dynamically based on the page layout */}
       </head>
       <body className="font-body antialiased flex flex-col min-h-screen">
-        <AuthProvider>
-          {/* Main content of the application */}
-          {children}
-        </AuthProvider>
+        {children}
         <Toaster />
       </body>
     </html>
+    // </ClerkProvider>
   );
 }

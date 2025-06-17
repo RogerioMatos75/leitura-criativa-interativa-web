@@ -9,6 +9,9 @@ import { LogIn } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   email: z.string().email("Email inválido."),
@@ -26,11 +29,48 @@ export default function LoginPage() {
     },
   });
 
-  function onSubmit(values: LoginFormValues) {
-    // Placeholder for login logic
-    console.log(values);
-    alert("Login (simulado) bem-sucedido!");
-    // router.push('/dashboard'); // Navigate to dashboard after real login
+  const { auth } = useAuth();
+  const router = useRouter();
+
+  async function onSubmit(values: LoginFormValues) {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, values.email, values.password);
+      console.log("Usuário autenticado com sucesso:", userCredential.user);
+      router.push('/dashboard');
+    } catch (error) {
+      console.error("Erro ao realizar login:", error);
+      let alertMessage = "Erro ao realizar login.";
+
+      if (typeof error === 'object' && error !== null) {
+        const firebaseError = error as { code?: string; message?: string };
+        if (firebaseError.code) {
+          switch (firebaseError.code) {
+            case 'auth/invalid-credential':
+              alertMessage = "Credenciais inválidas. Verifique seu email e senha e tente novamente.";
+              break;
+            case 'auth/user-not-found':
+              alertMessage = "Usuário não encontrado. Verifique o email ou cadastre-se.";
+              break;
+            case 'auth/wrong-password':
+              alertMessage = "Senha incorreta. Tente novamente.";
+              break;
+            case 'auth/too-many-requests':
+              alertMessage = "Muitas tentativas de login. Tente novamente mais tarde.";
+              break;
+            default:
+              alertMessage = `Erro (${firebaseError.code}): ${firebaseError.message}`;
+          }
+        } else if (firebaseError.message) {
+          alertMessage = firebaseError.message;
+        } else {
+          alertMessage = "Ocorreu um erro desconhecido durante o login. Verifique o console para mais detalhes.";
+        }
+      } else {
+        alertMessage = "Ocorreu um erro inesperado durante o login. Verifique o console.";
+      }
+
+      alert(alertMessage);
+    }
   }
 
   return (
@@ -76,7 +116,7 @@ export default function LoginPage() {
                 Entrar
               </Button>
               <p className="text-sm text-center text-muted-foreground">
-                Não tem uma conta?{" "}
+                Não tem uma conta?{' '}
                 <Link href="/signup" className="font-medium text-accent hover:underline">
                   Cadastre-se
                 </Link>

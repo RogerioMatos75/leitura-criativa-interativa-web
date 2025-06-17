@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { BookOpen, Lightbulb, UserCircle, ArrowRight } from 'lucide-react';
+import { BookOpen, UserCircle, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function DashboardPage() {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-4xl font-headline font-bold mb-8 text-primary">Painel Principal</h1>
-      
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Card className="shadow-lg hover:shadow-xl transition-shadow">
           <CardHeader>
@@ -32,18 +32,18 @@ export default function DashboardPage() {
         <Card className="shadow-lg hover:shadow-xl transition-shadow">
           <CardHeader>
             <div className="flex items-center text-accent mb-2">
-              <Lightbulb className="w-10 h-10 mr-3" />
+              <Sparkles className="w-10 h-10 mr-3 text-pink-500" />
               <div>
-                <CardTitle className="text-2xl font-headline">Recomendações IA</CardTitle>
-                <CardDescription>Descubra sua próxima leitura favorita.</CardDescription>
+                <CardTitle className="text-2xl font-headline">Aventura Criativa</CardTitle>
+                <CardDescription>Crie, imagine e viva histórias mágicas com IA.</CardDescription>
               </div>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="mb-4">Receba sugestões de livros personalizadas pela nossa IA.</p>
-            <Link href="/dashboard/recommendations">
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                Obter Recomendações <ArrowRight className="ml-2 h-4 w-4" />
+            <p className="mb-4">Gere histórias personalizadas, receba ideias para escrever e explore sua criatividade com a ajuda da inteligência artificial.</p>
+            <Link href="/dashboard/aventura-criativa">
+              <Button className="w-full bg-pink-500 text-white hover:bg-pink-600">
+                Ir para Aventura Criativa <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </CardContent>
@@ -71,10 +71,10 @@ export default function DashboardPage() {
       </div>
 
       <div className="mt-12 p-6 bg-secondary rounded-lg shadow">
-          <h2 className="text-2xl font-headline font-semibold mb-3 text-secondary-foreground">Dica do Dia!</h2>
-          <p className="text-secondary-foreground/80">
-            Lembre-se: ler um pouquinho todos os dias ajuda muito! Que tal escolher um livro novo hoje?
-          </p>
+        <h2 className="text-2xl font-headline font-semibold mb-3 text-secondary-foreground">Dica do Dia!</h2>
+        <p className="text-secondary-foreground/80">
+          Lembre-se: ler um pouquinho todos os dias ajuda muito! Que tal escolher um livro novo hoje?
+        </p>
       </div>
     </div>
   );
